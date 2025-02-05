@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Perhitungan Diskon</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Aplikasi Perhitungan Diskon</h2>
+        
+        <!-- Input untuk memasukkan harga -->
+        <label for="harga">Masukkan Harga Rp:</label>
+        <input type="number" id="harga" placeholder="Masukkan harga" required>
+        
+        <!-- Input untuk memasukkan diskon dalam persen -->
+        <label for="diskon">Masukkan Diskon (%):</label>
+        <input type="number" id="diskon" placeholder="Masukkan diskon" required>
+        
+        <!-- Tombol untuk memulai perhitungan diskon -->
+        <button onclick="hitungDiskon()">Hitung</button>
+        
+        <h3>Hasil:</h3>
+        <!-- Area untuk menampilkan hasil perhitungan -->
+        <p id="hasil"></p>
+    </div>
+
+    <script>
+        /**
+         * Fungsi untuk memformat angka menjadi mata uang Rupiah (IDR)
+         * @param {number} angka - Angka yang akan diformat
+         * @returns {string} - String dalam format mata uang Indonesia (Rp)
+         */
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(angka);
+        }
+
+        /**
+         * Fungsi untuk menghitung diskon dari harga yang dimasukkan
+         */
+        function hitungDiskon() {
+            // Mengambil nilai dari inputan harga dan diskon, lalu mengubahnya menjadi angka desimal
+            let harga = parseFloat(document.getElementById("harga").value);
+            let diskon = parseFloat(document.getElementById("diskon").value);
+
+            // Validasi input: Pastikan harga dan diskon adalah angka yang valid
+            if (isNaN(harga) || isNaN(diskon) || harga <= 0) {
+                document.getElementById("hasil").innerText = "Masukkan nilai harga dan diskon yang valid!";
+                return; // Keluar dari fungsi jika input tidak valid
+            }
+
+            // Validasi: Diskon tidak boleh negatif
+            if (diskon < 0) {
+                document.getElementById("hasil").innerText = "Diskon tidak boleh kurang dari 0%!";
+                return;
+            }
+
+            // Validasi: Diskon tidak boleh lebih dari 100%
+            if (diskon > 100) {
+                document.getElementById("hasil").innerText = "Diskon tidak boleh lebih dari 100%!";
+                return;
+            }
+
+            // Menghitung nilai diskon (berapa potongan harga)
+            let nDiskon = harga * (diskon / 100);
+            
+            // Menghitung total harga setelah diskon diterapkan
+            let totalHarga = harga - nDiskon;
+
+            // Menampilkan hasil perhitungan diskon dalam format yang lebih mudah dibaca
+            document.getElementById("hasil").innerHTML = `
+                Harga Awal: ${formatRupiah(harga)} <br>
+                Diskon: ${diskon}% <br>
+                Nilai Diskon: ${formatRupiah(nDiskon)} <br>
+                Total Harga setelah Diskon: ${formatRupiah(totalHarga)}
+            `;
+        }
+    </script>
+</body>
+</html>
