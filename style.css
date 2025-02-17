@@ -1,0 +1,77 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    margin: 50px;
+    background: linear-gradient(#141e30, #2a6c56);
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Input dan Button */
+input, button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: #fff;
+    text-align: center;
+}
+
+button {
+    background-color: #0ea534;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #066d25;
+}
+
+/* Kotak hasil perhitungan */
+.container, .hasil-container {
+    width: 100%;
+    max-width: 400px;  /* Batasi lebar kontainer agar tidak melebihi 400px */
+    margin: auto;  /* Memastikan kontainer berada di tengah */
+    padding: 20px;
+}
+
+
+/* Tombol kembali */
+.btn-kembali {
+    background-color: #0cb832;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.btn-kembali:hover {
+    background-color: #206106;
+}
